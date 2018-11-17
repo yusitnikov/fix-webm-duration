@@ -270,7 +270,7 @@
         this.source = new Uint8Array(length);
         for (var i = 0; i < length; i++) {
             var hex = this.data.substr(i * 2, 2);
-            this.source[i] = parseInt(hex, 2);
+            this.source[i] = parseInt(hex, 16);
         }
     };
     WebmUint.prototype.getValue = function() {
@@ -284,10 +284,26 @@
         WebmBase.call(this, name, type || 'Float');
     }
     doInherit(WebmFloat, WebmBase);
+    WebmFloat.prototype.getFloatArrayType = function() {
+        return this.source && this.source.length === 4 ? Float32Array : Float64Array;
+    };
+    WebmFloat.prototype.updateBySource = function() {
+        var byteArray = this.source.reverse();
+        var floatArrayType = this.getFloatArrayType();
+        var floatArray = new floatArrayType(byteArray.buffer);
+        this.data = floatArray[0];
+    };
     WebmFloat.prototype.updateByData = function() {
-        var floatArray = new Float64Array([ this.data ]);
+        var floatArrayType = this.getFloatArrayType();
+        var floatArray = new floatArrayType([ this.data ]);
         var byteArray = new Uint8Array(floatArray.buffer);
         this.source = byteArray.reverse();
+    };
+    WebmFloat.prototype.getValue = function() {
+        return this.data;
+    };
+    WebmFloat.prototype.setValue = function(value) {
+        this.setData(value);
     };
 
     function WebmContainer(name, type) {
@@ -411,20 +427,26 @@
 
         var durationSection = infoSection.getSectionById(0x489);
         if (durationSection) {
-            console.log('[fix-webm-duration] Duration section is present');
-            return false;
+            if (durationSection.getValue() <= 0) {
+                console.log('[fix-webm-duration] Duration section is present, but the value is empty');
+                durationSection.setValue(duration);
+            } else {
+                console.log('[fix-webm-duration] Duration section is present');
+                return false;
+            }
+        } else {
+            console.log('[fix-webm-duration] Duration section is missing');
+            // append Duration section
+            durationSection = new WebmFloat('Duration', 'Float');
+            durationSection.setValue(duration);
+            infoSection.data.push({
+                id: 0x489,
+                data: durationSection
+            });
         }
 
-        console.log('[fix-webm-duration] Info section is missing');
         // set default time scale to 1 millisecond (1000000 nanoseconds)
         timeScaleSection.setValue(1000000);
-        // append Duration section
-        durationSection = new WebmFloat('Duration', 'Float');
-        durationSection.setData(duration);
-        infoSection.data.push({
-            id: 0x489,
-            data: durationSection
-        });
         infoSection.updateByData();
         segmentSection.updateByData();
         this.updateByData();

@@ -21,7 +21,7 @@ where
 
 `ysFixWebmDuration` will parse and fix your file asynchronously and will call your callback once the result is ready.
 
-If the original blob already contains duration metadata section, the callback will receive it without any changes made.
+If the original blob already contains duration metadata section and the duration value is not empty, the callback will receive it without any changes made.
 
 Example:
 
