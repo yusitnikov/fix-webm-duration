@@ -1,7 +1,7 @@
-(function (name, definition){
-    if (typeof define === 'function'){ // AMD
+(function (name, definition) {
+    if (typeof define === 'function' && define.amd) { // RequireJS / AMD
         define(definition);
-    } else if (typeof module !== 'undefined' && module.exports) { // Node.js
+    } else if (typeof module !== 'undefined' && module.exports) { // CommonJS / Node.js
         module.exports = definition();
     } else { // Direct include
         window.ysFixWebmDuration = definition();
