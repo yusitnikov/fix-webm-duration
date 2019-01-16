@@ -1,0 +1,22 @@
+{
+  "name": "fix-webm-duration",
+  "version": "1.0.0",
+  "description": "navigator.mediaDevices.getUserMedia + MediaRecorder create WEBM files without duration metadata. This library appends missing metadata section right to the file blob.",
+  "main": "./fix-webm-duration.js",
+  "scripts": {},
+  "files": [
+    "fix-webm-duration.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusitnikov/fix-webm-duration.git"
+  },
+  "keywords": [],
+  "author": "Yuri Sitnikov <https://github.com/yusitnikov>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yusitnikov/fix-webm-duration/issues"
+  },
+  "homepage": "https://github.com/yusitnikov/fix-webm-duration",
+  "devDependencies": {}
+}

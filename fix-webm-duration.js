@@ -1,4 +1,12 @@
-(function() {
+(function (name, definition) {
+    if (typeof define === 'function' && define.amd) { // RequireJS / AMD
+        define(definition);
+    } else if (typeof module !== 'undefined' && module.exports) { // CommonJS / Node.js
+        module.exports = definition();
+    } else { // Direct include
+        window.ysFixWebmDuration = definition();
+    }
+})('fix-webm-duration', function () {
     /*
      * This is the list of possible WEBM file sections by their IDs.
      * Possible types: Container, Binary, Uint, Int, String, Float, Date
@@ -457,7 +465,7 @@
         return new Blob([ this.source.buffer ], { type: 'video/webm' });
     };
 
-    window.ysFixWebmDuration = function(blob, duration, callback) {
+    return function(blob, duration, callback) {
         try {
             var reader = new FileReader();
             reader.onloadend = function() {
@@ -476,4 +484,4 @@
             callback(blob);
         }
     };
-})();
+});
