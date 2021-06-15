@@ -417,33 +417,27 @@
     WebmFile.prototype.fixDuration = function(duration) {
         var segmentSection = this.getSectionById(0x8538067);
         if (!segmentSection) {
-            console.log('[fix-webm-duration] Segment section is missing');
             return false;
         }
 
         var infoSection = segmentSection.getSectionById(0x549a966);
         if (!infoSection) {
-            console.log('[fix-webm-duration] Info section is missing');
             return false;
         }
 
         var timeScaleSection = infoSection.getSectionById(0xad7b1);
         if (!timeScaleSection) {
-            console.log('[fix-webm-duration] TimecodeScale section is missing');
             return false;
         }
 
         var durationSection = infoSection.getSectionById(0x489);
         if (durationSection) {
             if (durationSection.getValue() <= 0) {
-                console.log('[fix-webm-duration] Duration section is present, but the value is empty');
                 durationSection.setValue(duration);
             } else {
-                console.log('[fix-webm-duration] Duration section is present');
                 return false;
             }
         } else {
-            console.log('[fix-webm-duration] Duration section is missing');
             // append Duration section
             durationSection = new WebmFloat('Duration', 'Float');
             durationSection.setValue(duration);
