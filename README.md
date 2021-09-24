@@ -11,13 +11,18 @@ The library contains only one script `fix-webm-duration.js` and has no dependenc
 Syntax:
 
 ```javascript
-ysFixWebmDuration(blob, duration, callback);
+ysFixWebmDuration(blob, duration, callback, options = {});
 ```
 
 where
 - `blob` is `Blob` object with file contents from `MediaRecorder`
 - `duration` is video duration in milliseconds (you should calculate it while recording the video)
 - `callback` is callback function that will receive fixed blob
+- `options` is an object of options:
+  - `options.logger` - a callback for logging debug messages or `false`.
+    The callback should accept one argument - the message string.
+    By default, `console.log` will be used for logging.
+    Passing `false` will disable the logging.
 
 `ysFixWebmDuration` will parse and fix your file asynchronously and will call your callback once the result is ready.
 

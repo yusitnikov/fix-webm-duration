@@ -414,36 +414,45 @@
         this.setSource(source);
     }
     doInherit(WebmFile, WebmContainer);
-    WebmFile.prototype.fixDuration = function(duration) {
+    WebmFile.prototype.fixDuration = function(duration, options) {
+        var logger = options && options.logger;
+        if (logger === undefined) {
+            logger = function(message) {
+                console.log(message);
+            };
+        } else if (!logger) {
+            logger = function() { };
+        }
+
         var segmentSection = this.getSectionById(0x8538067);
         if (!segmentSection) {
-            console.log('[fix-webm-duration] Segment section is missing');
+            logger('[fix-webm-duration] Segment section is missing');
             return false;
         }
 
         var infoSection = segmentSection.getSectionById(0x549a966);
         if (!infoSection) {
-            console.log('[fix-webm-duration] Info section is missing');
+            logger('[fix-webm-duration] Info section is missing');
             return false;
         }
 
         var timeScaleSection = infoSection.getSectionById(0xad7b1);
         if (!timeScaleSection) {
-            console.log('[fix-webm-duration] TimecodeScale section is missing');
+            logger('[fix-webm-duration] TimecodeScale section is missing');
             return false;
         }
 
         var durationSection = infoSection.getSectionById(0x489);
         if (durationSection) {
             if (durationSection.getValue() <= 0) {
-                console.log('[fix-webm-duration] Duration section is present, but the value is empty');
+                logger('[fix-webm-duration] Duration section is present, but the value is empty');
                 durationSection.setValue(duration);
             } else {
-                console.log('[fix-webm-duration] Duration section is present');
+                logger('[fix-webm-duration] Duration section is present');
                 return false;
             }
         } else {
-            console.log('[fix-webm-duration] Duration section is missing');
+            logger('[fix-webm-duration] Duration section is missing');
             // append Duration section
             durationSection = new WebmFloat('Duration', 'Float');
             durationSection.setValue(duration);
@@ -465,13 +474,13 @@
         return new Blob([ this.source.buffer ], { type: 'video/webm' });
     };
 
-    return function(blob, duration, callback) {
+    return function(blob, duration, callback, options) {
         try {
             var reader = new FileReader();
             reader.onloadend = function() {
                 try {
                     var file = new WebmFile(new Uint8Array(reader.result));
-                    if (file.fixDuration(duration)) {
+                    if (file.fixDuration(duration, options)) {
                         blob = file.toBlob();
                     }
                 } catch (ex) {
