@@ -470,8 +470,8 @@
 
         return true;
     };
-    WebmFile.prototype.toBlob = function() {
-        return new Blob([ this.source.buffer ], { type: 'video/webm' });
+    WebmFile.prototype.toBlob = function(mimeType) {
+        return new Blob([ this.source.buffer ], { type: mimeType || 'video/webm' });
     };
 
     function fixWebmDuration(blob, duration, callback, options) {
@@ -493,7 +493,7 @@
                 try {
                     var file = new WebmFile(new Uint8Array(reader.result));
                     if (file.fixDuration(duration, options)) {
-                        blob = file.toBlob();
+                        blob = file.toBlob(blob.type);
                     }
                 } catch (ex) {
                     // ignore
