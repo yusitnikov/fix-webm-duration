@@ -474,7 +474,19 @@
         return new Blob([ this.source.buffer ], { type: 'video/webm' });
     };
 
-    return function(blob, duration, callback, options) {
+    function fixWebmDuration(blob, duration, callback, options) {
+        // The callback may be omitted - then the third argument is options
+        if (typeof callback === "object") {
+            options = callback;
+            callback = undefined;
+        }
+
+        if (!callback) {
+            return new Promise(function(resolve) {
+                fixWebmDuration(blob, duration, resolve, options);
+            });
+        }
+
         try {
             var reader = new FileReader();
             reader.onloadend = function() {
@@ -492,5 +504,7 @@
         } catch (ex) {
             callback(blob);
         }
-    };
+    }
+
+    return fixWebmDuration;
 });

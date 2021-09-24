@@ -11,13 +11,14 @@ The library contains only one script `fix-webm-duration.js` and has no dependenc
 Syntax:
 
 ```javascript
-ysFixWebmDuration(blob, duration, callback, options = {});
+ysFixWebmDuration(blob, duration, callback = undefined, options = {});
 ```
 
 where
 - `blob` is `Blob` object with file contents from `MediaRecorder`
 - `duration` is video duration in milliseconds (you should calculate it while recording the video)
-- `callback` is callback function that will receive fixed blob
+- `callback` is callback function that will receive fixed blob.
+  If omitted, a `Promise` object will be returned instead.
 - `options` is an object of options:
   - `options.logger` - a callback for logging debug messages or `false`.
     The callback should accept one argument - the message string.
@@ -41,10 +42,17 @@ function startRecording(stream, options) {
     mediaRecorder.onstop = function() {
         var duration = Date.now() - startTime;
         var buggyBlob = new Blob(mediaParts, { type: 'video/webm' });
-        
+
+        // v1: callback-style
         ysFixWebmDuration(buggyBlob, duration, function(fixedBlob) {
             displayResult(fixedBlob);
         });
+
+        // v2: promise-style, disable logging
+        ysFixWebmDuration(buggyBlob, duration, {logger: false})
+            .then(function(fixedBlob) {
+                displayResult(fixedBlob);
+            });
     };
     mediaRecorder.ondataavailable = function(event) {
         var data = event.data;
