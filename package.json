@@ -5,7 +5,8 @@
   "main": "./fix-webm-duration.js",
   "scripts": {},
   "files": [
-    "fix-webm-duration.js"
+    "fix-webm-duration.js",
+    "fix-webm-duration.d.ts"
   ],
   "repository": {
     "type": "git",
