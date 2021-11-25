@@ -8,6 +8,18 @@ This library appends missing metadata section right to the file blob.
 
 The library contains only one script `fix-webm-duration.js` and has no dependencies.
 
+For projects with bundlers like webpack you can install npm package :
+
+```
+npm i fix-webm-duration --save
+```
+
+and import:
+
+```javascript
+import ysFixWebmDuration from 'fix-webm-duration';
+```
+
 Syntax:
 
 ```javascript
