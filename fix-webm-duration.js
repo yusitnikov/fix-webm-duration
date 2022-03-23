@@ -506,5 +506,8 @@
         }
     }
 
+    // Support AMD import default
+    fixWebmDuration.default = fixWebmDuration;
+
     return fixWebmDuration;
 });
