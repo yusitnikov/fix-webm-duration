@@ -4,6 +4,33 @@
 
 This library appends missing metadata section right to the file blob.
 
+## Installation
+
+### Install from a package manager
+
+```
+npm install fix-webm-duration
+```
+
+Then, the library could be imported or required:
+```javascript
+import fixWebmDuration from "fix-webm-duration";
+// or
+const fixWebmDuration = require("fix-webm-duration");
+```
+
+Typescript support included.
+
+### Include as a file asset
+
+Download the [./fix-webm-duration.js](fix-webm-duration.js) file from this repository,
+and load it in your web page:
+```html
+<script src="/path/to/fix-webm-duration.js"></script>
+```
+
+It will add a global `ysFixWebmDuration` function to the window.
+
 ## Usage
 
 The library contains only one script `fix-webm-duration.js` and has no dependencies.
