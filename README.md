@@ -35,6 +35,18 @@ It will add a global `ysFixWebmDuration` function to the window.
 
 The library contains only one script `fix-webm-duration.js` and has no dependencies.
 
+For projects with bundlers like webpack you can install npm package :
+
+```
+npm i fix-webm-duration --save
+```
+
+and import:
+
+```javascript
+import ysFixWebmDuration from 'fix-webm-duration';
+```
+
 Syntax:
 
 ```javascript
