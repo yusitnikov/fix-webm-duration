@@ -445,10 +445,10 @@
         var durationSection = infoSection.getSectionById(0x489);
         if (durationSection) {
             if (durationSection.getValue() <= 0) {
-                logger('[fix-webm-duration] Duration section is present, but the value is empty');
+                logger(`[fix-webm-duration] Duration section is present, but the value is ${durationSection.getValue()}`);
                 durationSection.setValue(duration);
             } else {
-                logger('[fix-webm-duration] Duration section is present');
+                logger(`[fix-webm-duration] Duration section is present, and the value is ${durationSection.getValue()}`);
                 return false;
             }
         } else {
