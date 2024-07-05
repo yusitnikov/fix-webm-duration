@@ -2,10 +2,17 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "production": ["default", "!{projectRoot}/.eslintrc.json", "!{projectRoot}/eslint.config.js"],
+        "production": [
+            "default",
+            "!{projectRoot}/.eslintrc.json",
+            "!{projectRoot}/eslint.config.js",
+            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{projectRoot}/tsconfig.spec.json"
+        ],
         "sharedGlobals": []
     },
     "workspaceLayout": {
+        "appsDir": "apps",
         "libsDir": "packages"
     },
     "targetDefaults": {
@@ -40,12 +47,32 @@
             "options": {
                 "buildTargetName": "build"
             }
+        },
+        {
+            "plugin": "@nx/webpack/plugin",
+            "options": {
+                "buildTargetName": "build",
+                "serveTargetName": "serve",
+                "previewTargetName": "preview"
+            }
         }
     ],
     "generators": {
         "@nx/react": {
             "library": {
+                "style": "none",
+                "linter": "eslint",
                 "unitTestRunner": "none"
+            },
+            "application": {
+                "babel": true,
+                "style": "none",
+                "linter": "eslint",
+                "bundler": "webpack",
+                "unitTestRunner": "none"
+            },
+            "component": {
+                "style": "none"
             }
         }
     }

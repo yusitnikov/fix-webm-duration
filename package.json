@@ -16,7 +16,8 @@
     "homepage": "https://github.com/yusitnikov/fix-webm-duration",
     "scripts": {
         "build": "nx run-many --target=build",
-        "lint": "nx run-many --target=lint"
+        "lint": "nx run-many --target=lint",
+        "demo": "nx serve demo"
     },
     "devDependencies": {
         "@babel/core": "^7.14.5",
@@ -26,10 +27,15 @@
         "@nx/js": "19.4.0",
         "@nx/react": "^19.4.0",
         "@nx/rollup": "19.4.0",
+        "@nx/web": "19.4.0",
+        "@nx/webpack": "19.4.0",
         "@nx/workspace": "19.4.0",
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
         "@rollup/plugin-url": "^8.0.2",
         "@svgr/rollup": "^8.1.0",
+        "@svgr/webpack": "^8.0.1",
         "@swc-node/register": "~1.9.1",
+        "@swc/cli": "~0.3.12",
         "@swc/core": "~1.5.7",
         "@swc/helpers": "~0.5.11",
         "@types/node": "18.16.9",
@@ -44,12 +50,15 @@
         "eslint-plugin-jsx-a11y": "6.7.1",
         "eslint-plugin-react": "7.32.2",
         "eslint-plugin-react-hooks": "4.6.0",
+        "jsdom": "~22.1.0",
         "nx": "19.4.0",
         "prettier": "^3.3.2",
+        "react-refresh": "^0.10.0",
         "rollup": "^4.14.0",
         "tslib": "^2.3.0",
         "typescript": "~5.4.2",
-        "verdaccio": "^5.0.4"
+        "verdaccio": "^5.0.4",
+        "webpack-cli": "^5.1.4"
     },
     "nx": {
         "includedScripts": []
