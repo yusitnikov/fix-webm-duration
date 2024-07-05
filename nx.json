@@ -2,11 +2,7 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "production": [
-            "default",
-            "!{projectRoot}/.eslintrc.json",
-            "!{projectRoot}/eslint.config.js"
-        ],
+        "production": ["default", "!{projectRoot}/.eslintrc.json", "!{projectRoot}/eslint.config.js"],
         "sharedGlobals": []
     },
     "workspaceLayout": {
@@ -30,6 +26,19 @@
             "options": {
                 "targetName": "lint"
             }
+        },
+        {
+            "plugin": "@nx/rollup/plugin",
+            "options": {
+                "buildTargetName": "build"
+            }
         }
-    ]
+    ],
+    "generators": {
+        "@nx/react": {
+            "library": {
+                "unitTestRunner": "none"
+            }
+        }
+    }
 }

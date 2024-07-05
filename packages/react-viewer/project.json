@@ -1,0 +1,9 @@
+{
+    "name": "react-viewer",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/react-viewer/src",
+    "projectType": "library",
+    "tags": [],
+    "// targets": "to see all targets run: nx show project react-viewer --web",
+    "targets": {}
+}

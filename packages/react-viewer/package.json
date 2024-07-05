@@ -1,0 +1,31 @@
+{
+    "name": "@fix-webm-duration/react-viewer",
+    "description": "React component for viewing parsed webm files and nodes as a tree",
+    "version": "0.0.0",
+    "main": "./index.js",
+    "types": "./index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./index.mjs",
+            "require": "./index.js"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yusitnikov/fix-webm-duration.git"
+    },
+    "keywords": [],
+    "author": "Yuri Sitnikov <https://github.com/yusitnikov>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yusitnikov/fix-webm-duration/issues"
+    },
+    "homepage": "https://github.com/yusitnikov/fix-webm-duration/tree/master/packages/react-viewer",
+    "dependencies": {
+        "@fix-webm-duration/parser": "*"
+    },
+    "peerDependencies": {
+        "react": ">=18.0.0",
+        "react-dom": ">=18.0.0"
+    }
+}

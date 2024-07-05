@@ -16,7 +16,8 @@
         "baseUrl": ".",
         "paths": {
             "@fix-webm-duration/fix": ["packages/fix/src/index.ts"],
-            "@fix-webm-duration/parser": ["packages/parser/src/index.ts"]
+            "@fix-webm-duration/parser": ["packages/parser/src/index.ts"],
+            "@fix-webm-duration/react-viewer": ["packages/react-viewer/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
