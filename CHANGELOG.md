@@ -1,3 +1,10 @@
+## 1.1.1 (2024-07-05)
+
+
+### 🩹 Fixes
+
+- **react-viewer:** remove accidental copy-paste from package.json ([f2e108e](https://github.com/yusitnikov/fix-webm-duration/commit/f2e108e))
+
 ## 1.1.0 (2024-07-05)
 
 
