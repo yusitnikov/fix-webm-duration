@@ -16,7 +16,15 @@
         }
     },
     "release": {
+        "changelog": {
+            "workspaceChangelog": {
+                "renderOptions": {
+                    "authors": false
+                }
+            }
+        },
         "version": {
+            "conventionalCommits": true,
             "preVersionCommand": "npx nx run-many -t build"
         }
     },
