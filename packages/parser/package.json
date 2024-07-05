@@ -1,0 +1,22 @@
+{
+    "name": "@fix-webm-duration/parser",
+    "description": "Parse webm files into individual sections, edit the sections, and compile the file from edited sections back together",
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yusitnikov/fix-webm-duration.git"
+    },
+    "keywords": [],
+    "author": "Yuri Sitnikov <https://github.com/yusitnikov>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yusitnikov/fix-webm-duration/issues"
+    },
+    "homepage": "https://github.com/yusitnikov/fix-webm-duration/tree/master/packages/parser",
+    "dependencies": {
+        "tslib": "^2.3.0"
+    },
+    "type": "commonjs",
+    "main": "./src/index.js",
+    "typings": "./src/index.d.ts"
+}

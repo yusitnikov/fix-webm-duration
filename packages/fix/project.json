@@ -1,0 +1,32 @@
+{
+    "name": "fix",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/fix/src",
+    "projectType": "library",
+    "release": {
+        "version": {
+            "generatorOptions": {
+                "packageRoot": "dist/{projectRoot}",
+                "currentVersionResolver": "git-tag"
+            }
+        }
+    },
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/fix",
+                "main": "packages/fix/src/index.ts",
+                "tsConfig": "packages/fix/tsconfig.lib.json",
+                "assets": ["packages/fix/*.md"]
+            }
+        },
+        "nx-release-publish": {
+            "options": {
+                "packageRoot": "dist/{projectRoot}"
+            }
+        }
+    }
+}

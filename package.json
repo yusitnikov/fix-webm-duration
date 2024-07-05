@@ -1,23 +1,43 @@
 {
-  "name": "fix-webm-duration",
-  "version": "1.0.6",
-  "description": "navigator.mediaDevices.getUserMedia + MediaRecorder create WEBM files without duration metadata. This library appends missing metadata section right to the file blob.",
-  "main": "./fix-webm-duration.js",
-  "scripts": {},
-  "files": [
-    "fix-webm-duration.js",
-    "fix-webm-duration.d.ts"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yusitnikov/fix-webm-duration.git"
-  },
-  "keywords": [],
-  "author": "Yuri Sitnikov <https://github.com/yusitnikov>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yusitnikov/fix-webm-duration/issues"
-  },
-  "homepage": "https://github.com/yusitnikov/fix-webm-duration",
-  "devDependencies": {}
+    "name": "@fix-webm-duration/source",
+    "description": "navigator.mediaDevices.getUserMedia + MediaRecorder create WEBM files without duration metadata. This library appends missing metadata section right to the file blob.",
+    "private": true,
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yusitnikov/fix-webm-duration.git"
+    },
+    "keywords": [],
+    "author": "Yuri Sitnikov <https://github.com/yusitnikov>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yusitnikov/fix-webm-duration/issues"
+    },
+    "homepage": "https://github.com/yusitnikov/fix-webm-duration",
+    "scripts": {
+        "build": "nx run-many --target=build",
+        "lint": "nx run-many --target=lint"
+    },
+    "devDependencies": {
+        "@nx/eslint": "19.4.0",
+        "@nx/eslint-plugin": "19.4.0",
+        "@nx/js": "19.4.0",
+        "@nx/workspace": "19.4.0",
+        "@swc-node/register": "~1.9.1",
+        "@swc/core": "~1.5.7",
+        "@swc/helpers": "~0.5.11",
+        "@types/node": "18.16.9",
+        "@typescript-eslint/eslint-plugin": "^7.3.0",
+        "@typescript-eslint/parser": "^7.3.0",
+        "eslint": "~8.57.0",
+        "eslint-config-prettier": "^9.0.0",
+        "nx": "19.4.0",
+        "prettier": "^3.3.2",
+        "typescript": "~5.4.2",
+        "verdaccio": "^5.0.4"
+    },
+    "dependencies": {},
+    "nx": {
+        "includedScripts": []
+    }
 }
