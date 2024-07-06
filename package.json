@@ -16,6 +16,7 @@
     "homepage": "https://github.com/yusitnikov/fix-webm-duration",
     "scripts": {
         "build": "nx run-many --target=build",
+        "build-demo": "nx build demo",
         "lint": "nx run-many --target=lint",
         "demo": "nx serve demo"
     },
