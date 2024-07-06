@@ -2,7 +2,7 @@ const { NxAppWebpackPlugin } = require("@nx/webpack/app-plugin");
 const { NxReactWebpackPlugin } = require("@nx/react/webpack-plugin");
 const { join } = require("path");
 
-module.exports = {
+module.exports = (options) => ({
     output: {
         path: join(__dirname, "../../dist/apps/demo"),
     },
@@ -15,7 +15,8 @@ module.exports = {
             compiler: "babel",
             main: "./src/main.tsx",
             index: "./src/index.html",
-            baseHref: "/",
+            // serve locally, build for GitHub actions
+            baseHref: options.WEBPACK_SERVE ? "/" : "/fix-webm-duration/",
             assets: ["./src/favicon.ico", "./src/assets"],
             styles: [],
             outputHashing: process.env["NODE_ENV"] === "production" ? "all" : "none",
@@ -27,4 +28,4 @@ module.exports = {
             // svgr: false
         }),
     ],
-};
+});
