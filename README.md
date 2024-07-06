@@ -4,6 +4,8 @@
 
 This library appends missing metadata section right to the file blob.
 
+See the demo [here](https://yusitnikov.github.io/fix-webm-duration/).
+
 ## Installation
 
 Install from a package manager:
@@ -23,18 +25,18 @@ import { fixWebmDuration } from "@fix-webm-duration/fix";
 Syntax:
 
 ```typescript
-const newBlob = await fixWebmDuration(blob, duration, options = {});
+const newBlob = await fixWebmDuration(blob, duration, (options = {}));
 ```
 
 where
 
-- `blob` is `Blob` object with file contents from `MediaRecorder`
-- `duration` is video duration in milliseconds (you should calculate it while recording the video)
-- `options` is an object of options:
-    - `options.logger` - a callback for logging debug messages or `false`.
-      The callback should accept one argument - the message string.
-      By default, `console.debug` will be used for logging.
-      Passing `false` will disable the logging.
+-   `blob` is `Blob` object with file contents from `MediaRecorder`
+-   `duration` is video duration in milliseconds (you should calculate it while recording the video)
+-   `options` is an object of options:
+    -   `options.logger` - a callback for logging debug messages or `false`.
+        The callback should accept one argument - the message string.
+        By default, `console.debug` will be used for logging.
+        Passing `false` will disable the logging.
 
 `fixWebmDuration` will parse and fix your file asynchronously and return the fixed blob once the result is ready.
 
@@ -54,7 +56,7 @@ function startRecording(stream: MediaStream, options: MediaRecorderOptions) {
         const duration = Date.now() - startTime;
         const buggyBlob = new Blob(mediaParts, { type: "video/webm" });
 
-        const fixedBlob = await fixWebmDuration(buggyBlob, duration)
+        const fixedBlob = await fixWebmDuration(buggyBlob, duration);
         displayResult(fixedBlob);
     };
     mediaRecorder.ondataavailable = (event) => {

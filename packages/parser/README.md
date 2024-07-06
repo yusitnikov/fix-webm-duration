@@ -3,6 +3,8 @@
 Parse webm files into individual sections, edit the sections,
 and compile the file from edited sections back together.
 
+See the demo [here](https://yusitnikov.github.io/fix-webm-duration/).
+
 **Warning: it's an internal implementation package, the interfaces here can change at any moment!**
 **Please don't use it directly in production code, only for debugging contents of webm files while developing!**
 
