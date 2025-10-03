@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { WebmBase } from "./WebmBase";
-import { sections, SectionKey, SectionsMap } from "./sections";
+import { SectionKey, sections, SectionsMap } from "./sections";
 import { SectionType } from "./SectionType";
-import { WebmUint } from "./WebmUint";
+import { WebmBase } from "./WebmBase";
 import { WebmFloat } from "./WebmFloat";
 import { WebmString } from "./WebmString";
+import { WebmUint } from "./WebmUint";
 
 type SectionTypeMap = {
     [SectionType.Container]: WebmContainer;
@@ -66,7 +66,7 @@ export class WebmContainer extends WebmBase<WebmContainerItem[], WebmContainerIt
             end = this.source!.length;
             if (len >= 0) end = Math.min(this.offset + len, end);
 
-            const data = this.source!.slice(this.offset, end);
+            const data = this.source!.subarray(this.offset, end);
 
             let section: WebmBase<any, any>;
             switch (type) {
