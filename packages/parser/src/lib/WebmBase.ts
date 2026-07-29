@@ -1,5 +1,6 @@
 export class WebmBase<DataT, ValueT> {
     public source: Uint8Array | undefined;
+    public sourceLen: number | undefined;
     public data: DataT | undefined;
 
     protected constructor(

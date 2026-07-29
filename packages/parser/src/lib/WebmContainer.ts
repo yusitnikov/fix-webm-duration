@@ -27,7 +27,6 @@ export class WebmContainer extends WebmBase<WebmContainerItem[], WebmContainerIt
 
     constructor(
         name?: string,
-        public isInfinite = false,
         start = 0,
     ) {
         super(name, start);
@@ -71,7 +70,7 @@ export class WebmContainer extends WebmBase<WebmContainerItem[], WebmContainerIt
             let section: WebmBase<any, any>;
             switch (type) {
                 case SectionType.Container:
-                    section = new WebmContainer(name, len < 0, start);
+                    section = new WebmContainer(name, start);
                     break;
                 case SectionType.Uint:
                     section = new WebmUint(name, start);
@@ -87,6 +86,9 @@ export class WebmContainer extends WebmBase<WebmContainerItem[], WebmContainerIt
                     break;
             }
             section.setSource(data);
+            // if the section is unknown size or truncated, save the size for emitting it
+            if (len < 0 || end < this.offset + len)
+                section.sourceLen = len;
             this.data.push({
                 id,
                 idHex: id.toString(16),
@@ -121,7 +123,7 @@ export class WebmContainer extends WebmBase<WebmContainerItem[], WebmContainerIt
                 contentLength = content.length;
             this.writeUint(section.id, draft);
             this.writeUint(
-                section.data instanceof WebmContainer && section.data.isInfinite ? -1 : contentLength,
+                section.data.sourceLen ?? contentLength,
                 draft,
             );
             if (!draft) {

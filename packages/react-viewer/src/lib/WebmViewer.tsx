@@ -11,7 +11,7 @@ export const WebmViewer = ({ name, value }: WebmViewerProps) => {
 
     return (
         <>
-            {value instanceof WebmContainer && value.isInfinite && "[infinite] "}
+            {value instanceof WebmBase && (value.sourceLen ?? 0) < 0 && "[infinite] "}
             [0x{value.start.toString(16)}] {niceName}: {value.getType()} = <WebmViewerInner value={value} />
         </>
     );
